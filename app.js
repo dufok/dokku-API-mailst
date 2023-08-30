@@ -1,4 +1,25 @@
-app.post('/sendEmail', async (req, res) => {
+const express = require('express');
+const nodemailer = require('nodemailer');
+const app = express();
+const port = 3000;
+
+// Don't forget to include this line to parse JSON request bodies
+app.use(express.json());
+
+const YOUR_SECRET_API_KEY = process.env.API_KEY;
+
+// Middleware to check API key
+function checkApiKey(req, res, next) {
+  const apiKey = req.headers['x-api-key'];
+  if (apiKey === YOUR_SECRET_API_KEY) {
+    next();
+  } else {
+    res.status(401).send('Unauthorized: Invalid API key');
+  }
+}
+
+// Apply middleware to /sendEmail endpoint
+app.post('/sendEmail', checkApiKey, async (req, res) => {
   const { to, subject, html, user, pass } = req.body;
 
   // Configure your Postfix settings here
@@ -24,4 +45,8 @@ app.post('/sendEmail', async (req, res) => {
     console.error(error);
     res.status(500).send('Error sending email');
   }
+});
+
+app.listen(port, () => {
+  console.log(`Mail API listening at http://localhost:${port}`);
 });
