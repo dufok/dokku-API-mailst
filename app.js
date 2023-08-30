@@ -1,27 +1,20 @@
-const express = require('express');
-const nodemailer = require('nodemailer');
-const app = express();
-const port = 3000;
-
-app.use(express.json());
-
 app.post('/sendEmail', async (req, res) => {
-  const { to, subject, html } = req.body;
+  const { to, subject, html, user, pass } = req.body;
 
   // Configure your Postfix settings here
   let transporter = nodemailer.createTransport({
-    host: 'your-postfix-server.com',
+    host: 'localhost',
     port: 587,
     secure: false,
     auth: {
-      user: 'your-email@example.com',
-      pass: 'your-password'
+      user: user,  // Dynamic based on request
+      pass: pass   // Dynamic based on request
     }
   });
 
   try {
     await transporter.sendMail({
-      from: 'your-email@example.com',
+      from: user,  // Dynamic based on request
       to: to,
       subject: subject,
       html: html
@@ -31,8 +24,4 @@ app.post('/sendEmail', async (req, res) => {
     console.error(error);
     res.status(500).send('Error sending email');
   }
-});
-
-app.listen(port, () => {
-  console.log(`Mail API listening at http://localhost:${port}`);
 });
