@@ -119,7 +119,8 @@ const sendEmail = async (req, res) => {
     const response = await fetch('http://your-dokku-app-address/sendEmail', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'mailst-api-key': process.env.MAILST_API_KEY
       },
       body: JSON.stringify({
         to: to,
@@ -161,8 +162,7 @@ export const sendEmailMessage = async (userEmail: string) => {
     const response = await fetch('http://your-dokku-app-address/sendEmail', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': 'YOUR_SECRET_API_KEY' // Add this line for API key authentication
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         to: userEmail,
