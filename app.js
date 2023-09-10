@@ -1,7 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const app = express();
-const port = 3000;
+const port = 1314;
 
 // Don't forget to include this line to parse JSON request bodies
 app.use(express.json());
@@ -25,7 +25,7 @@ app.post('/sendEmail', checkApiKey, async (req, res) => {
 
   // Configure your Postfix settings here
   let transporter = nodemailer.createTransport({
-    host: MAIL_SERVER,
+    host: YOUR_MAIL_SERVER,
     port: 587,
     secure: false,
     auth: {

@@ -78,6 +78,13 @@ This will generate a 40-character hexadecimal string that you can use as your AP
 ```bash
 dokku config:set my-mail-api API_KEY=your-api-key
 ```
+
+- Set mail server
+
+```bash
+dokku config:set my-mail-api MAIL_SERVER=your-mail-server
+```
+
 In the application, this environment variable is accessed as process.env.API_KEY.
 
 - Add remote Dokku repository:
