@@ -7,6 +7,7 @@ const port = 3000;
 app.use(express.json());
 
 const YOUR_SECRET_API_KEY = process.env.API_KEY;
+const YOUR_MAIL_SERVER = process.env.MAIL_SERVER;
 
 // Middleware to check API key
 function checkApiKey(req, res, next) {
@@ -24,7 +25,7 @@ app.post('/sendEmail', checkApiKey, async (req, res) => {
 
   // Configure your Postfix settings here
   let transporter = nodemailer.createTransport({
-    host: 'localhost',
+    host: MAIL_SERVER,
     port: 587,
     secure: false,
     auth: {
