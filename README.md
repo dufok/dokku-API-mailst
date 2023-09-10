@@ -18,13 +18,13 @@ This repository contains a RESTful API built with Node.js and Express.js. The AP
 - Clone the repository:
 
 ```bash
-git clone https://github.com/your-repo/my-mail-api.git
+git clone https://github.com/your-repo/dokku-API-mailst.git
 ```
 
 - Navigate to the project directory:
 
 ```bash
-cd my-mail-api
+cd dokku-API-mailst
 ```
 
 - Install dependencies:
@@ -46,13 +46,13 @@ node app.js
 - Build the Docker image:
 
 ```bash
-docker build -t my-mail-api .
+docker build -t dokku-API-mailst .
 ```
 
 - Run the Docker container:
 
 ```bash
-docker run -p 3000:3000 my-mail-api
+docker run -p 1314:1314 dokku-API-mailst
 ```
 
 # Deploying with Dokku
@@ -61,7 +61,7 @@ docker run -p 3000:3000 my-mail-api
 - Create a new Dokku app:
 
 ```bash
-dokku apps:create my-mail-api
+dokku apps:create dokku-API-mailst
 ```
 - Generating an API Key
 An API key is used to authenticate requests made to this service. You can generate an API key using various methods. One simple way is to use Node.js to generate a random string:
@@ -76,13 +76,13 @@ This will generate a 40-character hexadecimal string that you can use as your AP
 - Set the API key as an environment variable on your Dokku server:
 
 ```bash
-dokku config:set my-mail-api API_KEY=your-api-key
+dokku config:set dokku-API-mailst API_KEY=your-api-key
 ```
 
 - Set mail server
 
 ```bash
-dokku config:set my-mail-api MAIL_SERVER=your-mail-server
+dokku config:set dokku-API-mailst MAIL_SERVER=your-mail-server
 ```
 
 In the application, this environment variable is accessed as process.env.API_KEY.
@@ -90,7 +90,7 @@ In the application, this environment variable is accessed as process.env.API_KEY
 - Add remote Dokku repository:
 
 ```bash
-git remote add dokku dokku@your-dokku-server:my-mail-api
+git remote add dokku dokku@your-dokku-server:dokku-API-mailst
 ```
 
 - Deploy the app to Dokku:
