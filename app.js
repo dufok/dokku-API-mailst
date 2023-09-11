@@ -25,7 +25,7 @@ app.post('/sendEmail', checkApiKey, async (req, res) => {
 
   // Configure your Postfix settings here
   let transporter = nodemailer.createTransport({
-    host: 'localhost',
+    host: YOUR_MAIL_SERVER,
     port: 587,
     secure: false,
     auth: {
